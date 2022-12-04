@@ -1,5 +1,7 @@
 package com.fyh.ordering_system.view;
 
+import com.fyh.ordering_system.domain.Employee;
+import com.fyh.ordering_system.service.EmployeeService;
 import com.fyh.ordering_system.utils.Utility;
 
 public class View {
@@ -10,6 +12,8 @@ public class View {
     //控制是否退出菜单
     private boolean loop = true;
     private String key = ""; // 接收用户的选择
+    //定义EmployeeService 属性
+    private EmployeeService employeeService = new EmployeeService();
 
     //显示主菜单
     public void mainMenu() {
@@ -19,15 +23,17 @@ public class View {
             System.out.println("\t\t 2 Exit the system");
             System.out.print("Please enter your choice: ");
             key = Utility.readString(1);
+
             switch (key) {
                 case "1":
                     System.out.println("Account Number: ");
-                    String id = Utility.readString(50);
+                    String empId = Utility.readString(50);
                     System.out.println("Password: ");
                     String pwd = Utility.readString(50);
                     //到数据库去判断
-                    if ("123".equals(pwd)) {
-                        System.out.println("=========Log in successfully=========\n");
+                    Employee employee = employeeService.getEmployeeByIdAndPwd(empId,pwd);
+                    if (employee != null) { // 说明存在该用户
+                        System.out.println("=========Log in successfully[" + employee.getName() + "]=========\n");
                         //显示二级菜单
                         while (loop) {
                             System.out.println("=========Food Plaza Ordering System(Secondary menu)=========");
