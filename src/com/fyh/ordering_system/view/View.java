@@ -1,19 +1,35 @@
 package com.fyh.ordering_system.view;
 
+import com.fyh.ordering_system.domain.DiningTable;
 import com.fyh.ordering_system.domain.Employee;
+import com.fyh.ordering_system.service.DiningTableService;
 import com.fyh.ordering_system.service.EmployeeService;
 import com.fyh.ordering_system.utils.Utility;
+
+import java.util.List;
 
 public class View {
     public static void main(String[] args) {
         new View().mainMenu();
     }
 
+    //显示所有餐桌状态
+    public void listDiningTable() {
+        List<DiningTable> list = diningTableService.list();
+        System.out.println("\nTable Number\tTable State");
+        for (DiningTable diningTable : list) {
+            System.out.println(diningTable);
+        }
+        System.out.println("=========Display Complete=========");
+    }
+
     //控制是否退出菜单
     private boolean loop = true;
     private String key = ""; // 接收用户的选择
-    //定义EmployeeService 属性
+    //定义 EmployeeService 属性
     private EmployeeService employeeService = new EmployeeService();
+    //调用 DiningTable 的属性
+    private DiningTableService diningTableService = new DiningTableService();
 
     //显示主菜单
     public void mainMenu() {
@@ -48,7 +64,7 @@ public class View {
                             key = Utility.readString(1);
                             switch (key) {
                                 case "1":
-                                    System.out.println("Show table status");
+                                    listDiningTable(); //显示餐桌状态
                                     break;
                                 case "2":
                                     System.out.println("Book a table");
