@@ -1,0 +1,85 @@
+package com.fyh.ordering_system.view;
+
+import com.fyh.ordering_system.utils.Utility;
+
+public class View {
+    public static void main(String[] args) {
+        new View().mainMenu();
+    }
+
+    //控制是否退出菜单
+    private boolean loop = true;
+    private String key = ""; // 接收用户的选择
+
+    //显示主菜单
+    public void mainMenu() {
+        while (loop) {
+            System.out.println("=========Food Plaza Ordering System=========");
+            System.out.println("\t\t 1 Log in to the system");
+            System.out.println("\t\t 2 Exit the system");
+            System.out.print("Please enter your choice: ");
+            key = Utility.readString(1);
+            switch (key) {
+                case "1":
+                    System.out.println("Account Number: ");
+                    String id = Utility.readString(50);
+                    System.out.println("Password: ");
+                    String pwd = Utility.readString(50);
+                    //到数据库去判断
+                    if ("123".equals(pwd)) {
+                        System.out.println("=========Log in successfully=========\n");
+                        //显示二级菜单
+                        while (loop) {
+                            System.out.println("=========Food Plaza Ordering System(Secondary menu)=========");
+                            System.out.println("\t\t 1 Show table status");
+                            System.out.println("\t\t 2 Book a table");
+                            System.out.println("\t\t 3 Show all dishes");
+                            System.out.println("\t\t 4 Order service");
+                            System.out.println("\t\t 5 View bill");
+                            System.out.println("\t\t 6 Settle accounts");
+                            System.out.println("\t\t 7 Exit");
+                            System.out.println("Please enter your choice: ");
+                            key = Utility.readString(1);
+                            switch (key) {
+                                case "1":
+                                    System.out.println("Show table status");
+                                    break;
+                                case "2":
+                                    System.out.println("Book a table");
+                                    break;
+                                case "3":
+                                    System.out.println("Show all dishes");
+                                    break;
+                                case "4":
+                                    System.out.println("Order service");
+                                    break;
+                                case "5":
+                                    System.out.println("View bill");
+                                    break;
+                                case "6":
+                                    System.out.println("Settle accounts");
+                                    break;
+                                case "7":
+                                    loop = false;
+                                    break;
+                                default:
+                                    System.out.println("Your input is incorrect, please retype.");
+                                    break;
+                            }
+
+                        }
+                    } else {
+                        System.out.println("=========Log in failed=========");
+                    }
+                    break;
+                case "2":
+                    loop = false;
+                    break;
+                default:
+                    System.out.println("Your input is incorrect, please retype.");
+
+            }
+        }
+        System.out.println("You have exited the system...");
+    }
+}
