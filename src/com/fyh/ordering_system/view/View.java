@@ -2,8 +2,10 @@ package com.fyh.ordering_system.view;
 
 import com.fyh.ordering_system.domain.DiningTable;
 import com.fyh.ordering_system.domain.Employee;
+import com.fyh.ordering_system.domain.Menu;
 import com.fyh.ordering_system.service.DiningTableService;
 import com.fyh.ordering_system.service.EmployeeService;
+import com.fyh.ordering_system.service.MenuService;
 import com.fyh.ordering_system.utils.Utility;
 
 import java.util.List;
@@ -65,13 +67,25 @@ public class View {
         }
     }
 
+    //显示所有菜品
+    public void listMenu() {
+        List<Menu> list = menuService.list();
+        System.out.println("\nDish No\t\tName\t\tType\t\tPrice");
+        for (Menu menu : list) {
+            System.out.println(menu);
+        }
+        System.out.println("=========Display Complete=========");
+    }
+
     //控制是否退出菜单
     private boolean loop = true;
     private String key = ""; // 接收用户的选择
-    //定义 EmployeeService 属性
+    //定义 EmployeeService 的属性
     private EmployeeService employeeService = new EmployeeService();
-    //调用 DiningTable 的属性
+    //定义 DiningTableService 的属性
     private DiningTableService diningTableService = new DiningTableService();
+    //定义 MenuService 的属性
+    private MenuService menuService = new MenuService();
 
     //显示主菜单
     public void mainMenu() {
@@ -94,7 +108,7 @@ public class View {
                         System.out.println("=========Log in successfully[" + employee.getName() + "]=========\n");
                         //显示二级菜单
                         while (loop) {
-                            System.out.println("=========Food Plaza Ordering System(Secondary menu)=========");
+                            System.out.println("\n=========Food Plaza Ordering System(Secondary menu)=========");
                             System.out.println("\t\t 1 Show table status");
                             System.out.println("\t\t 2 Order a table");
                             System.out.println("\t\t 3 Show all dishes");
@@ -112,7 +126,7 @@ public class View {
                                     orderDiningTable(); //预定餐桌
                                     break;
                                 case "3":
-                                    System.out.println("Show all dishes");
+                                    listMenu(); //显示所有菜品
                                     break;
                                 case "4":
                                     System.out.println("Order service");
