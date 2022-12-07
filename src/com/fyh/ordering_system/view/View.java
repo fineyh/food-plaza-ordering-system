@@ -3,6 +3,7 @@ package com.fyh.ordering_system.view;
 import com.fyh.ordering_system.domain.DiningTable;
 import com.fyh.ordering_system.domain.Employee;
 import com.fyh.ordering_system.domain.Menu;
+import com.fyh.ordering_system.service.BillService;
 import com.fyh.ordering_system.service.DiningTableService;
 import com.fyh.ordering_system.service.EmployeeService;
 import com.fyh.ordering_system.service.MenuService;
@@ -34,6 +35,7 @@ public class View {
             System.out.println("=========Cancel the table reservation=========");
             return;
         }
+
         //该方法得到的是 Y 或者 N
         char key = Utility.readConfirmSelection();
         if (key == 'Y') { // 要预定
@@ -77,6 +79,53 @@ public class View {
         System.out.println("=========Display Complete=========");
     }
 
+    //完成点餐
+    public void orderMenu(){
+        System.out.println("=========Order food service=========");
+
+        System.out.print("Please enter the table number for ordering(-1 to exit): "); // 点餐的桌号
+        int orderDiningTableId = Utility.readInt();
+        if (orderDiningTableId == -1) {
+            System.out.println("=========Cancel the table reservation=========");
+            return;
+        }
+
+        System.out.print("Please enter the order menu id of the order(-1 to exit): "); // 点餐的菜品号
+        int orderMenuId = Utility.readInt();
+        if (orderMenuId == -1) {
+            System.out.println("=========Cancel the table reservation=========");
+            return;
+        }
+
+        System.out.print("Please enter the number of the order(-1 to exit): "); // 点餐的菜品量
+        int orderNums = Utility.readInt();
+        if (orderNums == -1) {
+            System.out.println("=========Cancel the table reservation=========");
+            return;
+        }
+
+        //验证餐桌号是否存在
+        DiningTable diningTable = diningTableService.getDiningTableById(orderDiningTableId);
+        if (diningTable == null) {
+            System.out.println("=========Table number does not exist=========");
+            return;
+        }
+
+        //验证菜品编号
+        Menu menu = menuService.getMenuById(orderMenuId);
+        if (menu == null) {
+            System.out.println("=========Dish's id does not exist=========");
+            return;
+        }
+
+        //点餐
+        if (billService.orderMenu(orderMenuId, orderNums, orderDiningTableId)) {
+            System.out.println("=========Order successfully=========");
+        } else {
+            System.out.println("=========Order failed=========");
+        }
+    }
+
     //控制是否退出菜单
     private boolean loop = true;
     private String key = ""; // 接收用户的选择
@@ -86,6 +135,8 @@ public class View {
     private DiningTableService diningTableService = new DiningTableService();
     //定义 MenuService 的属性
     private MenuService menuService = new MenuService();
+    //定义 BillService 的属性
+    private BillService billService= new BillService();
 
     //显示主菜单
     public void mainMenu() {
@@ -129,7 +180,7 @@ public class View {
                                     listMenu(); //显示所有菜品
                                     break;
                                 case "4":
-                                    System.out.println("Order service");
+                                    orderMenu(); //点餐
                                     break;
                                 case "5":
                                     System.out.println("View bill");
