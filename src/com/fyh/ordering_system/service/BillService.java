@@ -40,4 +40,32 @@ public class BillService {
     public List<Bill> list() {
         return billDAO.queryMulti("select * from bill", Bill.class);
     }
+
+    //查看某张餐桌是否有未结账的账单
+    public boolean hasPayBillByDiningTableId(int diningTableId) {
+        Bill bill = billDAO.querySingle("select * from bill where diningTableId=? and state= 'Not paid out' limit 0, 1", Bill.class, diningTableId);
+        return bill != null;
+    }
+
+    //完成结账[如果餐桌存在，并且该餐桌有未结账的账单]
+    //传入结账方式payMode
+    //如果成功，返回true，失败返回false
+    public boolean payBill(int diningTableId, String payMode) {
+        //1. 修改bill表
+        int update = billDAO.update("update bill set state=? where diningTableId=? and state='Not paid out'", payMode, diningTableId );
+
+        //如果更新没有成功，则表示失败
+        if (update <= 0) {
+            return false;
+        }
+
+        //2. 修改diningTable表
+        //调用 DiningTableService 方法 完成更新
+        if (diningTableService.updateDiningTableStateToFree(diningTableId, "empty")) {
+            return false;
+        }
+
+        return true;
+    }
+
 }

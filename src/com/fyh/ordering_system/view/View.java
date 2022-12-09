@@ -137,6 +137,46 @@ public class View {
         System.out.println("=========Display Complete=========");
     }
 
+    //完成结账
+    public void payBill() {
+        System.out.println("=========Pay Bill Service=========");
+        System.out.println("Please select the table number you want to pay bill(-1 to exit)");
+        int diningTableId = Utility.readInt();
+        if (diningTableId == -1) {
+            System.out.println("=========Cancel the payment=========");
+            return;
+        }
+
+        //验证餐桌是否存在
+        DiningTable diningTable = diningTableService.getDiningTableById(diningTableId);
+        if (diningTable == null) {
+            System.out.println("=========The checked table does not exist========="); // 结账的餐桌不存在
+            return;
+        }
+
+        //验证餐桌是否有需要结账的账单
+        if (!billService.hasPayBillByDiningTableId(diningTableId)) {
+            System.out.println("=========There are no outstanding bills for this table========="); // 该餐桌没有未结账账单
+            return;
+        }
+
+        System.out.print("Payment method (cash/Alipay/wechat): (enter to exit)"); //结账方式
+
+        String payMode = Utility.readString(20, ""); // 如果回车，返回的就是""
+        if ("".equals(payMode)) {
+            System.out.println("=========Cancel the payment=========");
+            return;
+        }
+        char key = Utility.readConfirmSelection();
+        if (key == 'Y') { // 结账
+            if (billService.payBill(diningTableId, payMode)) {
+                System.out.println("=========Complete the payment successfully========="); // 完成结账
+            } else {
+                System.out.println("=========Complete the payment failed========="); // 结账失败
+            }
+        }
+    }
+
     //控制是否退出菜单
     private boolean loop = true;
     private String key = ""; // 接收用户的选择
@@ -194,10 +234,10 @@ public class View {
                                     orderMenu(); //点餐
                                     break;
                                 case "5":
-                                    listBill();
+                                    listBill(); //显示账单
                                     break;
                                 case "6":
-                                    System.out.println("Settle accounts");
+                                    payBill();
                                     break;
                                 case "7":
                                     loop = false;
