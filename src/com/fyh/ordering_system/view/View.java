@@ -1,5 +1,6 @@
 package com.fyh.ordering_system.view;
 
+import com.fyh.ordering_system.domain.Bill;
 import com.fyh.ordering_system.domain.DiningTable;
 import com.fyh.ordering_system.domain.Employee;
 import com.fyh.ordering_system.domain.Menu;
@@ -126,6 +127,16 @@ public class View {
         }
     }
 
+    //显示账单信息
+    public void listBill() {
+        List<Bill> bills = billService.list();
+        System.out.println("\nID\t\tDish No\t\tDish number\t\tPrice\t\tTable ID\t\tDate\t\t\t\t\t\t\tState");
+        for (Bill bill : bills) {
+            System.out.println(bill);
+        }
+        System.out.println("=========Display Complete=========");
+    }
+
     //控制是否退出菜单
     private boolean loop = true;
     private String key = ""; // 接收用户的选择
@@ -183,7 +194,7 @@ public class View {
                                     orderMenu(); //点餐
                                     break;
                                 case "5":
-                                    System.out.println("View bill");
+                                    listBill();
                                     break;
                                 case "6":
                                     System.out.println("Settle accounts");

@@ -1,5 +1,7 @@
 package com.fyh.ordering_system.dao;
 
-public class BillDAO extends BasicDAO<BasicDAO> {
+import com.fyh.ordering_system.domain.Bill;
+
+public class BillDAO extends BasicDAO<Bill> {
 
 }

@@ -1,7 +1,9 @@
 package com.fyh.ordering_system.service;
 
 import com.fyh.ordering_system.dao.BillDAO;
+import com.fyh.ordering_system.domain.Bill;
 
+import java.util.List;
 import java.util.UUID;
 
 public class BillService {
@@ -32,5 +34,10 @@ public class BillService {
 
         //需要更新对应餐桌的状态
         return diningTableService.updateDiningTableState(diningTableId, "Eating");
+    }
+
+    //返回所有的账单，提供给 View 调用
+    public List<Bill> list() {
+        return billDAO.queryMulti("select * from bill", Bill.class);
     }
 }
