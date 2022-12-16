@@ -18,4 +18,9 @@ public class MenuService {
     public Menu getMenuById(int id) {
         return menuDAO.querySingle("select * from menu where id = ?", Menu.class, id);
     }
+
+    //提供方法，返回表的行数
+    public long getCount() {
+        return (long) menuDAO.queryCount("select count(*) from menu");
+    }
 }
