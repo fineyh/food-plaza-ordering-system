@@ -64,10 +64,10 @@ public class ListDiningTable extends JFrame {
         String[] arr = new String[2];
         //循环添加
         for (int i = 1; i <= count; i++) {
-            Integer tableId = diningTableService.getDiningTableById(i).getId();
-            String tableIdStr = tableId.toString();
-            arr[0] = "" + tableIdStr;
-            arr[1] = diningTableService.getDiningTableById(tableId).getState();
+            Integer id = diningTableService.getDiningTableById(i).getId();
+            String idStr = id.toString();
+            arr[0] = "" + idStr;
+            arr[1] = diningTableService.getDiningTableById(id).getState();
             add(arr);
         }
     }

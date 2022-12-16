@@ -1,6 +1,5 @@
 package com.fyh.ordering_system.view;
 
-import com.fyh.ordering_system.service.DiningTableService;
 import com.fyh.ordering_system.service.MenuService;
 
 import javax.swing.*;
@@ -65,12 +64,12 @@ public class ListMenu extends JFrame {
         String[] arr = new String[4];
         //循环添加
         for (int i = 1; i <= count; i++) {
-            Integer tableId = menuService.getMenuById(i).getId();
-            String tableIdStr = tableId.toString();
-            arr[0] = "" + tableIdStr;
-            arr[1] = menuService.getMenuById(tableId).getName();
-            arr[2] = menuService.getMenuById(tableId).getType();
-            arr[3] = menuService.getMenuById(tableId).getPrice().toString();
+            Integer id = menuService.getMenuById(i).getId();
+            String idStr = id.toString();
+            arr[0] = "" + idStr;
+            arr[1] = menuService.getMenuById(id).getName();
+            arr[2] = menuService.getMenuById(id).getType();
+            arr[3] = menuService.getMenuById(id).getPrice().toString();
             add(arr);
         }
     }
