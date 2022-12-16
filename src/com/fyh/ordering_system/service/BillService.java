@@ -68,4 +68,15 @@ public class BillService {
         return true;
     }
 
+    //提供方法，返回表的行数
+    public long getCount() {
+        return (long) billDAO.queryCount("select count(*) from bill");
+    }
+
+    //根据id，查询对应的Bill 对象
+    //如果返回null，表示id编号对应的bill不存在
+    public Bill getBillById(int id) {
+        return  billDAO.querySingle("select * from bill where id = ?", Bill.class, id);
+    }
+
 }
