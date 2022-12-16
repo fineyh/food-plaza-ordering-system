@@ -6,6 +6,17 @@ import java.awt.*;
 public class MainMenu {
     JFrame frame = new JFrame("主菜单");
     Container c = frame.getContentPane();//创建视图
+    JLabel title = new JLabel("Food Plaza Ordering System");
+//    JLabel tableNumTitle = new JLabel("Table Number");
+    JTable tableTable;
+    JButton listDiningTableBtn = new JButton("List Dining Table");
+    JButton orderDiningTableBtn = new JButton("Order Dining Table");
+    JButton listMenuBtn = new JButton("List Menu");
+    JButton orderMenuBtn = new JButton("Order Menu");
+    JButton listBillBtn = new JButton("List Bill");
+    JButton payBillBtn = new JButton("Pay Bill");
+
+
 
     public MainMenu() {
         frame.setSize(1080, 720);//设置窗体位置&大小
@@ -17,6 +28,41 @@ public class MainMenu {
     }
 
     public void init() {
+        //标题面板
+        JPanel titlePanel = new JPanel();//创建一个放置标题的面板
+        titlePanel.setBorder(BorderFactory.createEtchedBorder());
+        titlePanel.setLayout(new FlowLayout());
+        title.setFont(new Font("Cambria",Font.BOLD,15));
+        titlePanel.add(title);
+        c.add(titlePanel, "North");//加入视图中
 
+
+        //显示面板
+        JPanel showPanel = new JPanel();
+        showPanel.setBorder(BorderFactory.createEtchedBorder());
+        showPanel.setLayout(null);
+
+
+
+        c.add(showPanel, "Center");
+
+
+
+
+        //功能面板
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setBorder(BorderFactory.createEtchedBorder());
+        buttonPanel.setLayout(new FlowLayout());
+        buttonPanel.add(listDiningTableBtn);
+        buttonPanel.add(orderDiningTableBtn);
+        buttonPanel.add(listMenuBtn);
+        buttonPanel.add(orderMenuBtn);
+        buttonPanel.add(listBillBtn);
+        buttonPanel.add(payBillBtn);
+        c.add(buttonPanel, "South");
+
+        listDiningTableBtn.addActionListener(e -> {
+            new ListDiningTable();
+        });
     }
 }
