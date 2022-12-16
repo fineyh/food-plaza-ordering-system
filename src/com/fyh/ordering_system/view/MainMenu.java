@@ -7,15 +7,14 @@ public class MainMenu {
     JFrame frame = new JFrame("主菜单");
     Container c = frame.getContentPane();//创建视图
     JLabel title = new JLabel("Food Plaza Ordering System");
-//    JLabel tableNumTitle = new JLabel("Table Number");
-    JTable tableTable;
+    ImageIcon imageIcon = new ImageIcon("src\\com\\fyh\\ordering_system\\view\\images\\FoodPlaza.jpg");
+    JLabel image = new JLabel(imageIcon);
     JButton listDiningTableBtn = new JButton("List Dining Table");
     JButton orderDiningTableBtn = new JButton("Order Dining Table");
     JButton listMenuBtn = new JButton("List Menu");
     JButton orderMenuBtn = new JButton("Order Menu");
     JButton listBillBtn = new JButton("List Bill");
     JButton payBillBtn = new JButton("Pay Bill");
-
 
 
     public MainMenu() {
@@ -41,9 +40,8 @@ public class MainMenu {
         JPanel showPanel = new JPanel();
         showPanel.setBorder(BorderFactory.createEtchedBorder());
         showPanel.setLayout(null);
-
-
-
+        image.setBounds(0,0,1060,600);
+        showPanel.add(image);
         c.add(showPanel, "Center");
 
 
