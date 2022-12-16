@@ -38,4 +38,9 @@ public class DiningTableService { // 业务层
         int update = diningTableDAO.update("update diningTable set state=?, orderName='', orderTel='' where id=?", state, id);
         return update > 0;
     }
+
+    //提供方法，返回表的行数
+    public long getCount() {
+        return (long) diningTableDAO.queryCount("select count(*) from diningTable");
+    }
 }

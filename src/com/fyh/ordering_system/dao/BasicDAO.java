@@ -86,5 +86,19 @@ public class BasicDAO<T> { //泛型指定具体类型
         }
     }
 
+    //查询单表行数
+    public Object queryCount(String sql) {
+        Connection connection = null;
+        try {
+            connection = JDBCUtilsByDruid.getConnection();
+            return  qr.query(connection,sql, new ScalarHandler());
+
+        } catch (SQLException e) {
+            throw  new RuntimeException(e); //将编译异常->运行异常 ,抛出
+        } finally {
+            JDBCUtilsByDruid.close(null,null,connection);
+        }
+    }
+
 }
 
