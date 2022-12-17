@@ -23,4 +23,9 @@ public class MenuService {
     public long getCount() {
         return (long) menuDAO.queryCount("select count(*) from menu");
     }
+
+    //提供方法，根据菜品名返回id
+    public Menu getMenuByDish(String dish) {
+        return menuDAO.querySingle("select * from menu where name=?", Menu.class, dish);
+    }
 }

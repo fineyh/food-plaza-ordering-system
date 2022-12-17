@@ -59,6 +59,7 @@ public class MainMenu {
         buttonPanel.add(payBillBtn);
         c.add(buttonPanel, "South");
 
+        //各功能按钮监听器
         listDiningTableBtn.addActionListener(e -> {
             new ListDiningTable();
         });
@@ -68,7 +69,9 @@ public class MainMenu {
         listMenuBtn.addActionListener(e -> {
             new ListMenu();
         });
-
+        orderMenuBtn.addActionListener(e -> {
+            new OrderMenu();
+        });
         listBillBtn.addActionListener(e -> {
             new ListBill();
         });
