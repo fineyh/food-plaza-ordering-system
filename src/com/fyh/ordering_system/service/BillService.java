@@ -61,7 +61,7 @@ public class BillService {
 
         //2. 修改diningTable表
         //调用 DiningTableService 方法 完成更新
-        if (diningTableService.updateDiningTableStateToFree(diningTableId, "empty")) {
+        if (!diningTableService.updateDiningTableStateToFree(diningTableId, "empty")) {
             return false;
         }
 

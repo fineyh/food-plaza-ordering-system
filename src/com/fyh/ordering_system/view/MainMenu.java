@@ -45,8 +45,6 @@ public class MainMenu {
         c.add(showPanel, "Center");
 
 
-
-
         //功能面板
         JPanel buttonPanel = new JPanel();
         buttonPanel.setBorder(BorderFactory.createEtchedBorder());
@@ -74,6 +72,9 @@ public class MainMenu {
         });
         listBillBtn.addActionListener(e -> {
             new ListBill();
+        });
+        payBillBtn.addActionListener(e -> {
+            new PayBill();
         });
     }
 }
