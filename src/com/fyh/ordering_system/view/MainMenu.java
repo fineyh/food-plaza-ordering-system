@@ -62,7 +62,9 @@ public class MainMenu {
         listDiningTableBtn.addActionListener(e -> {
             new ListDiningTable();
         });
-
+        orderDiningTableBtn.addActionListener(e -> {
+            new OrderDiningTable();
+        });
         listMenuBtn.addActionListener(e -> {
             new ListMenu();
         });

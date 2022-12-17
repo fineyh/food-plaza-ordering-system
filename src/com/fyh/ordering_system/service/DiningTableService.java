@@ -43,4 +43,9 @@ public class DiningTableService { // 业务层
     public long getCount() {
         return (long) diningTableDAO.queryCount("select count(*) from diningTable");
     }
+
+    //提供方法，返回空闲状态餐桌的数量
+    public long getEmptyCount(){
+        return (long) diningTableDAO.queryCount("select count(*) from diningTable where state='empty' ");
+    }
 }
