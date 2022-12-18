@@ -8,8 +8,8 @@ import java.awt.*;
 
 public class PayBill extends JFrame {
     Container contentPane = this.getContentPane();//创建视图
-    JLabel jcLabel = new JLabel("Choose table:             Table");
-    JComboBox jc=new JComboBox();//创建餐桌下拉框
+    JLabel tableLabel = new JLabel("Choose table:             Table");
+    JComboBox tableComboBox =new JComboBox();//创建餐桌下拉框
     JLabel payMethodLabel = new JLabel("Pay method:");
     JRadioButton jRadioButton1 = new JRadioButton("Cash");
     JRadioButton jRadioButton2 = new JRadioButton("Alipay");
@@ -43,7 +43,7 @@ public class PayBill extends JFrame {
 //        jc.addItem("--Please choose--");
         for (int i = 1; i <= diningTableService.getCount(); i++) {
             if (diningTableService.getDiningTableById(i).getState().equals("Eating")) {
-                jc.addItem(diningTableService.getDiningTableById(i).getId());
+                tableComboBox.addItem(diningTableService.getDiningTableById(i).getId());
             }
         }
 
@@ -53,16 +53,16 @@ public class PayBill extends JFrame {
         group.add(jRadioButton3);
 
         //设置各组件位置&大小
-        jcLabel.setBounds(80,50,150,30);
-        jc.setBounds(240,50,60,30);
+        tableLabel.setBounds(80,50,150,30);
+        tableComboBox.setBounds(240,50,60,30);
         payMethodLabel.setBounds(80,90,100,30);
         jRadioButton1.setBounds(170,90,60,30);
         jRadioButton2.setBounds(230,90,60,30);
         jRadioButton3.setBounds(290,90,70,30);
         jButton.setBounds(150,200,100,30);
 
-        showPanel.add(jcLabel);
-        showPanel.add(jc);//把下拉框添加到面板中
+        showPanel.add(tableLabel);
+        showPanel.add(tableComboBox);//把下拉框添加到面板中
         showPanel.add(payMethodLabel);
         showPanel.add(jRadioButton1);
         showPanel.add(jRadioButton2);
@@ -74,7 +74,7 @@ public class PayBill extends JFrame {
         setVisible(true);
 
         jButton.addActionListener(e -> {
-            int diningTableId = (int)jc.getSelectedItem();
+            int diningTableId = (int) tableComboBox.getSelectedItem();
             String payMode = "";
             if (jRadioButton1.isSelected()) {
                 payMode = "Cash";

@@ -160,7 +160,7 @@ public class View {
             return;
         }
 
-        System.out.print("Payment method (cash/Alipay/wechat): (enter to exit)"); //结账方式
+        System.out.print("Payment method (Cash/Alipay/Wechat): (enter to exit)"); //结账方式
 
         String payMode = Utility.readString(20, ""); // 如果回车，返回的就是""
         if ("".equals(payMode)) {

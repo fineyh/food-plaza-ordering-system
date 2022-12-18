@@ -7,8 +7,8 @@ import java.awt.*;
 
 public class OrderDiningTable extends JFrame {
     Container contentPane = this.getContentPane();//创建视图
-    JLabel jcLabel = new JLabel("Choose table:             Table");
-    JComboBox jc=new JComboBox();//创建下拉框
+    JLabel tableLabel = new JLabel("Choose table:             Table");
+    JComboBox tableComboBox =new JComboBox();//创建下拉框
     JLabel orderNameLabel = new JLabel("Order Name:");
     JLabel orderTelLabel = new JLabel("Order Tel:");
     JTextField orderNameText = new JTextField();
@@ -39,21 +39,21 @@ public class OrderDiningTable extends JFrame {
 //        jc.addItem("--Please choose--");
         for (int i = 1; i <= diningTableService.getCount(); i++) {
             if (diningTableService.getDiningTableById(i).getState().equals("empty")) {
-                jc.addItem(diningTableService.getDiningTableById(i).getId());
+                tableComboBox.addItem(diningTableService.getDiningTableById(i).getId());
             }
         }
 
         //设置各组件位置&大小
-        jcLabel.setBounds(80,50,150,30);
-        jc.setBounds(240,50,60,30);
+        tableLabel.setBounds(80,50,150,30);
+        tableComboBox.setBounds(240,50,60,30);
         orderNameLabel.setBounds(80,90,100,30);
         orderNameText.setBounds(170,90,130,30);
         orderTelLabel.setBounds(80,130,100,30);
         orderTelText.setBounds(170,130,130,30);
         jButton.setBounds(150,200,100,30);
 
-        showPanel.add(jcLabel);
-        showPanel.add(jc);//把下拉框添加到面板中
+        showPanel.add(tableLabel);
+        showPanel.add(tableComboBox);//把下拉框添加到面板中
         showPanel.add(orderNameLabel);
         showPanel.add(orderNameText);
         showPanel.add(orderTelLabel);
@@ -65,7 +65,7 @@ public class OrderDiningTable extends JFrame {
         setVisible(true);
 
         jButton.addActionListener(e -> {
-            int orderId = (int)jc.getSelectedItem();
+            int orderId = (int) tableComboBox.getSelectedItem();
             String orderName = orderNameText.getText();
             String orderTel = orderTelText.getText();
             if (diningTableService.orderDiningTable(orderId, orderName, orderTel)) {

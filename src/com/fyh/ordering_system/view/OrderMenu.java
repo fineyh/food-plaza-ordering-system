@@ -9,8 +9,8 @@ import java.awt.*;
 
 public class OrderMenu extends JFrame {
     Container contentPane = this.getContentPane();//创建视图
-    JLabel jcLabel = new JLabel("Reserved table:         Table");
-    JComboBox reservedTable =new JComboBox();//餐桌号
+    JLabel tableLabel = new JLabel("Reserved table:         Table");
+    JComboBox tableComboBox =new JComboBox();//餐桌号
     JLabel orderNameLabel = new JLabel("Dish Name:");
     JLabel orderTelLabel = new JLabel("Dish Number:");
     JComboBox dishName = new JComboBox();//菜品
@@ -46,7 +46,7 @@ public class OrderMenu extends JFrame {
         for (int i = 1; i <= diningTableService.getCount(); i++) {
             String tableState = diningTableService.getDiningTableById(i).getState();
             if (tableState.equals("Ordered") || tableState.equals("Eating")) { //餐桌为empty或eating时都可以加菜
-                reservedTable.addItem(diningTableService.getDiningTableById(i).getId());
+                tableComboBox.addItem(diningTableService.getDiningTableById(i).getId());
             }
         }
 
@@ -61,16 +61,16 @@ public class OrderMenu extends JFrame {
         }
 
         //设置各组件位置&大小
-        jcLabel.setBounds(80,50,150,30);
-        reservedTable.setBounds(240,50,60,30);
+        tableLabel.setBounds(80,50,150,30);
+        tableComboBox.setBounds(240,50,60,30);
         orderNameLabel.setBounds(80,90,100,30);
         dishName.setBounds(170,90,130,30);
         orderTelLabel.setBounds(80,130,100,30);
         dishNum.setBounds(170,130,130,30);
         jButton.setBounds(150,200,100,30);
 
-        showPanel.add(jcLabel);
-        showPanel.add(reservedTable);//把下拉框添加到面板中
+        showPanel.add(tableLabel);
+        showPanel.add(tableComboBox);//把下拉框添加到面板中
         showPanel.add(orderNameLabel);
         showPanel.add(dishName);
         showPanel.add(orderTelLabel);
@@ -83,7 +83,7 @@ public class OrderMenu extends JFrame {
 
         //按钮监听器
         jButton.addActionListener(e -> {
-            int orderDiningTableId = (int) reservedTable.getSelectedItem();
+            int orderDiningTableId = (int) tableComboBox.getSelectedItem();
             int orderMenuId = menuService.getMenuByDish(dishName.getSelectedItem().toString()).getId();
             int orderNums = (int)dishNum.getSelectedItem();
             if (billService.orderMenu(orderMenuId, orderNums, orderDiningTableId)) {

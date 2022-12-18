@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class MainMenu {
-    JFrame frame = new JFrame("主菜单");
+    JFrame frame = new JFrame("Main Menu");
     Container c = frame.getContentPane();//创建视图
     JLabel title = new JLabel("Food Plaza Ordering System");
     ImageIcon imageIcon = new ImageIcon("src\\com\\fyh\\ordering_system\\view\\images\\FoodPlaza.jpg");
@@ -58,23 +58,11 @@ public class MainMenu {
         c.add(buttonPanel, "South");
 
         //各功能按钮监听器
-        listDiningTableBtn.addActionListener(e -> {
-            new ListDiningTable();
-        });
-        orderDiningTableBtn.addActionListener(e -> {
-            new OrderDiningTable();
-        });
-        listMenuBtn.addActionListener(e -> {
-            new ListMenu();
-        });
-        orderMenuBtn.addActionListener(e -> {
-            new OrderMenu();
-        });
-        listBillBtn.addActionListener(e -> {
-            new ListBill();
-        });
-        payBillBtn.addActionListener(e -> {
-            new PayBill();
-        });
+        listDiningTableBtn.addActionListener(e -> new ListDiningTable());
+        orderDiningTableBtn.addActionListener(e -> new OrderDiningTable());
+        listMenuBtn.addActionListener(e -> new ListMenu());
+        orderMenuBtn.addActionListener(e -> new OrderMenu());
+        listBillBtn.addActionListener(e -> new ListBill());
+        payBillBtn.addActionListener(e -> new PayBill());
     }
 }

@@ -7,15 +7,15 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Login {
-    JFrame frame = new JFrame("登录");
+    JFrame frame = new JFrame("Login");
     Container c = frame.getContentPane();//创建视图
     JLabel title = new JLabel("Food Plaza Ordering System");
-    JLabel userLabel = new JLabel("用户名");
+    JLabel userLabel = new JLabel("Username:");
     JTextField username = new JTextField();
-    JLabel passwdLabel = new JLabel("密码");
+    JLabel passwdLabel = new JLabel("Password:");
     JPasswordField password = new JPasswordField();
-    JButton okbutton = new JButton("确定");
-    JButton cancelbttton = new JButton("取消");
+    JButton okbutton = new JButton("Confirm");
+    JButton cancelbttton = new JButton("Cancel");
 
     public Login() {
         frame.setSize(300, 220);//设置窗体大小
@@ -39,12 +39,12 @@ public class Login {
 //        输入框——中间
         JPanel inputPanel = new JPanel();
         inputPanel.setLayout(null);
-        userLabel.setBounds(50, 20, 50, 20);//标签位置
-        passwdLabel.setBounds(50, 60, 50, 20);
+        userLabel.setBounds(45, 20, 100, 20);//标签位置
+        passwdLabel.setBounds(45, 60, 100, 20);
         inputPanel.add(userLabel);
         inputPanel.add(passwdLabel);
-        username.setBounds(110, 20, 120, 20);
-        password.setBounds(110, 60, 120, 20);
+        username.setBounds(115, 20, 120, 20);
+        password.setBounds(115, 60, 120, 20);
         inputPanel.add(username);
         inputPanel.add(password);
         c.add(inputPanel, "Center");
@@ -52,6 +52,7 @@ public class Login {
 //        按钮底部
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new FlowLayout());
+        frame.getRootPane().setDefaultButton(okbutton);// 确认按钮绑定回车快捷键
         buttonPanel.add(okbutton);
         buttonPanel.add(cancelbttton);
         c.add(buttonPanel, "South");
@@ -67,12 +68,11 @@ public class Login {
                 new MainMenu();
             } else {
                 System.out.println("failed");
+                JOptionPane.showMessageDialog(null, "Wrong username or password!", "Error", JOptionPane. ERROR_MESSAGE);
             }
         });
 
         //取消按钮
-        cancelbttton.addActionListener(e -> {
-            frame.dispose();
-        });
+        cancelbttton.addActionListener(e -> frame.dispose());
     }
 }
