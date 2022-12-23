@@ -26,8 +26,6 @@ public class ListDiningTable extends JFrame {
         // 设置退出后进行的操作
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-        // --------------------------------------------------------------------------
-
         //创建表
 
         //表头数据
