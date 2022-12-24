@@ -59,6 +59,7 @@ food-plaza-ordering-system
 │  │           ├─ PayBill.java             
 │  │           └─ View.java                //控制台程序
 │  └─ druid.properties                     
+├─ ordering-system.sql                     
 └─ README.md                               
 
 ```
