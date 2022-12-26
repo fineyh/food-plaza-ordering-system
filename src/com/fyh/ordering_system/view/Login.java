@@ -14,8 +14,8 @@ public class Login {
     JTextField username = new JTextField();
     JLabel passwdLabel = new JLabel("Password:");
     JPasswordField password = new JPasswordField();
-    JButton okbutton = new JButton("Confirm");
-    JButton cancelbttton = new JButton("Cancel");
+    JButton okButton = new JButton("Confirm");
+    JButton cancelButton = new JButton("Cancel");
 
     public Login() {
         frame.setSize(300, 220);//设置窗体大小
@@ -52,13 +52,13 @@ public class Login {
 //        按钮底部
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new FlowLayout());
-        frame.getRootPane().setDefaultButton(okbutton);// 确认按钮绑定回车快捷键
-        buttonPanel.add(okbutton);
-        buttonPanel.add(cancelbttton);
+        frame.getRootPane().setDefaultButton(okButton);// 确认按钮绑定回车快捷键
+        buttonPanel.add(okButton);
+        buttonPanel.add(cancelButton);
         c.add(buttonPanel, "South");
 
         //确认按钮
-        okbutton.addActionListener(e -> {
+        okButton.addActionListener(e -> {
             String empId = username.getText();
             String pwd = password.getText();
             Employee employee = employeeService.getEmployeeByIdAndPwd(empId,pwd);
@@ -73,6 +73,6 @@ public class Login {
         });
 
         //取消按钮
-        cancelbttton.addActionListener(e -> frame.dispose());
+        cancelButton.addActionListener(e -> frame.dispose());
     }
 }
