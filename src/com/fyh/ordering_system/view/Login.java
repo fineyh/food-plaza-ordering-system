@@ -8,7 +8,7 @@ import java.awt.*;
 
 public class Login {
     JFrame frame = new JFrame("Login");
-    Container c = frame.getContentPane();//创建视图
+    Container container = frame.getContentPane();//创建视图
     JLabel title = new JLabel("Food Plaza Ordering System");
     JLabel userLabel = new JLabel("Username:");
     JTextField username = new JTextField();
@@ -20,7 +20,7 @@ public class Login {
     public Login() {
         frame.setSize(300, 220);//设置窗体大小
         frame.setLocationRelativeTo(null);//设置窗口位于屏幕正中
-        c.setLayout(new BorderLayout());//设置视图的布局
+        container.setLayout(new BorderLayout());//设置视图的布局
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//设置关闭功能
         init();//初始化，把控件放在布局里
         frame.setVisible(true);//设置窗体可见
@@ -34,7 +34,7 @@ public class Login {
         titlePanel.setLayout(new FlowLayout());
         title.setFont(new Font("Cambria",Font.BOLD,20));
         titlePanel.add(title);
-        c.add(titlePanel, "North");//加入视图中
+        container.add(titlePanel, "North");//加入视图中
 
 //        输入框——中间
         JPanel inputPanel = new JPanel();
@@ -47,7 +47,7 @@ public class Login {
         password.setBounds(115, 60, 120, 20);
         inputPanel.add(username);
         inputPanel.add(password);
-        c.add(inputPanel, "Center");
+        container.add(inputPanel, "Center");
 
 //        按钮底部
         JPanel buttonPanel = new JPanel();
@@ -55,7 +55,7 @@ public class Login {
         frame.getRootPane().setDefaultButton(okButton);// 确认按钮绑定回车快捷键
         buttonPanel.add(okButton);
         buttonPanel.add(cancelButton);
-        c.add(buttonPanel, "South");
+        container.add(buttonPanel, "South");
 
         //确认按钮
         okButton.addActionListener(e -> {
