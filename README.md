@@ -68,8 +68,8 @@ food-plaza-ordering-system
 
 ## 示例图片
 
-<img src="https://www.pics.fineyh.com/images/2022/12/20/202212201831107.png" alt="image-20221220183057138" style="zoom: 80%;" />
+![202212201831107](./assets/202212201831107.png)
 
-![image-20221220183255969](https://www.pics.fineyh.com/images/2022/12/20/202212201832190.png)
+![202212201832190](./assets/202212201832190.png)
 
-![image-20221220183337827](https://www.pics.fineyh.com/images/2022/12/20/202212201833034.png)
+![202212201833034](./assets/202212201833034.png)
